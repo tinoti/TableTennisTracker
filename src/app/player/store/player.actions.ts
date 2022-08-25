@@ -1,7 +1,8 @@
 import { createAction, props, union } from "@ngrx/store";
 
 export enum ActionTypes {
-    POST_PLAYER = "[Player] Post player"
+    POST_PLAYER = "[Player] Post player",
+    DELETE_PLAYER = "[Player] Delete player"
 }
 
 export const postPlayer = createAction(
@@ -9,9 +10,15 @@ export const postPlayer = createAction(
     props<{ name: string }>()
 )
 
+export const deletePlayer = createAction(
+    ActionTypes.DELETE_PLAYER,
+    props<{ id: string }>()
+)
+
 
 const actions = union({
-    postPlayer
+    postPlayer,
+    deletePlayer
 })
 
 export type ActionsUnion = typeof actions

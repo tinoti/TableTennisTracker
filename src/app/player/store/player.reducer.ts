@@ -20,8 +20,18 @@ const postPlayer = (state: playerState.State, name: string) => {
 }
 
 
+const deletePlayer = (state: playerState.State, id: string) => {
+
+    return {
+        ...state,
+        players: state.players.filter(o => o.id != id) // Remove the player from the array.
+    }
+}
+
+
 
 export const playerReducer = createReducer(
     playerState.initialState,
-    on(playerActions.postPlayer, (state, { name }) => { return postPlayer(state, name) })
+    on(playerActions.postPlayer, (state, { name }) => { return postPlayer(state, name) }),
+    on(playerActions.deletePlayer, (state, { id }) => { return deletePlayer(state, id)})
 )

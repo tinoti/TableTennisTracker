@@ -6,7 +6,7 @@
                     <mat-form-field class="example-full-width">
                         <input matInput type="text" placeholder="Player name" name="name" [(ngModel)]="name">
                     </mat-form-field>
-                    <button (click)="postPlayer()" mat-raised-button class="btn btn-info">Add</button>
+                    <button (click)="postPlayer(); form.reset()" mat-raised-button class="btn btn-info">Add</button>
                 </div>
             </div>
         </form>

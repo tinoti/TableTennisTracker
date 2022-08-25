@@ -4,6 +4,8 @@ import { AngularMaterialModule } from './shared/angularMaterial.module';
 import { FormsModule } from '@angular/forms';
 import { appRoutingModule } from './app.routing.module';
 import { StoreModule } from '@ngrx/store';
+import { LetModule } from '@ngrx/component';
+
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +32,8 @@ import { playerReducer } from './player/store/player.reducer';
     BrowserAnimationsModule,
     AngularMaterialModule,
     FormsModule,
-    appRoutingModule
+    appRoutingModule,
+    LetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
