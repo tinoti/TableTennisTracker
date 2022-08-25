@@ -1,0 +1,14 @@
+<div class="card col-sm-3">
+    <div class="card-body">
+        <form #form="ngForm">
+            <div class="row">
+                <div class="col-sm-12">
+                    <mat-form-field class="example-full-width">
+                        <input matInput type="text" placeholder="Player name" name="name" [(ngModel)]="name">
+                    </mat-form-field>
+                    <button (click)="postPlayer()" mat-raised-button class="btn btn-info">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
