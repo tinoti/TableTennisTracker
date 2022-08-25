@@ -1,0 +1,33 @@
+<form #form="ngForm">
+    <div class="row">
+        <div class="col-sm-4">
+            <mat-form-field>
+                <mat-label>Player one</mat-label>
+                <mat-select [(ngModel)]="playerOne" name="playerOne" >
+                    <mat-option *ngFor="let player of (players$ | async | mutuallyExclusivePlayerSelect:playerTwo)" [value]="player.id" (change)="change($event)">
+                        {{player.name}}
+                    </mat-option>
+                </mat-select>
+                <button *ngIf="playerOne" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearPlayerOne($event)">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <mat-form-field>
+                <mat-label>Player two</mat-label>
+                <mat-select [(ngModel)]="playerTwo" name="playerTwo">
+                    <mat-option *ngFor="let player of (players$ | async | mutuallyExclusivePlayerSelect:playerOne)" [value]="player.id">
+                        {{player.name}}
+                    </mat-option>
+                </mat-select>
+                <button *ngIf="playerTwo" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearPlayerTwo($event)">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </div>
+</form>
