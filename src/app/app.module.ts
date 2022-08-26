@@ -14,13 +14,11 @@ import { MatchComponent } from './match/match.component';
 import { PlayerAddComponent } from './player/player-add/player-add.component';
 import { PlayerListComponent } from './player/player-list/player-list.component';
 import { PlayerDetailsComponent } from './player/player-details/player-details.component';
-import { playerReducer } from './player/store/player.reducer';
 import { MatchAddComponent } from './match/match-add/match-add.component';
 import { MatchListComponent } from './match/match-list/match-list.component';
 import { MatchDetailsComponent } from './match/match-details/match-details.component';
 import { MutuallyExclusivePlayerSelectPipe } from './shared/pipes/mutuallyExclusivePlayerSelect.pipe';
 import { SetScoringValidatorDirective } from './shared/directives/setScoringValidator.directive';
-import { matchReducer } from './match/store/match.reducer';
 import { appReducer } from './shared/store/app.reducers';
 
 @NgModule({

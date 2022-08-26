@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Player } from 'src/app/player/player.model';
-import { AppState, State } from 'src/app/shared/store/app.state';
-import { matchActions } from '../store';
+import { appActions } from 'src/app/shared/store';
+import { AppState } from 'src/app/shared/store/app.state';
 
 @Component({
   selector: 'app-match-add',
@@ -35,7 +35,7 @@ export class MatchAddComponent implements OnInit {
 
   postMatch() {
     console.log(this.sets)
-    this.store.dispatch(matchActions.postMatch({ playerOneId: this.playerOne.id, playerTwoId: this.playerTwo.id, sets: this.sets }))
+    this.store.dispatch(appActions.postMatch({ playerOneId: this.playerOne.id, playerTwoId: this.playerTwo.id, sets: this.sets }))
   }
 
 }
