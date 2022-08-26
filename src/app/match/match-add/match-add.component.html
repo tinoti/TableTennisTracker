@@ -1,4 +1,4 @@
-<form #form="ngForm">
+<form #form="ngForm" [appSetScoring]="form">
     <div class="row">
         <div class="col-sm-4">
             <p><b>SET</b></p>
@@ -39,27 +39,27 @@
         <div class="col-sm-1"></div>
         <div class="col-sm-1">
             <mat-form-field style="width: 30px;">
-                <input matInput type="number" min="0">
+                <input matInput type="number" min="0" [(ngModel)]="sets[0][0]" name="playerOneSetOne">
             </mat-form-field>
         </div>
         <div class="col-sm-1">
             <mat-form-field style="width: 30px;">
-                <input matInput type="number" min="0">
+                <input matInput type="number" min="0" [(ngModel)]="sets[1][0]" name="playerOneSetTwo">
             </mat-form-field>
         </div>
         <div class="col-sm-1">
             <mat-form-field style="width: 30px;">
-                <input matInput type="number" min="0">
+                <input matInput type="number" min="0" [(ngModel)]="sets[2][0]" name="playerOneSetThree">
             </mat-form-field>
         </div>
         <div class="col-sm-1">
             <mat-form-field style="width: 30px;">
-                <input matInput type="number" min="0">
+                <input matInput type="number" min="0" [(ngModel)]="sets[3][0]" name="playerOneSetFour">
             </mat-form-field>
         </div>
         <div class="col-sm-1">
             <mat-form-field style="width: 30px;">
-                <input matInput type="number" min="0">
+                <input matInput type="number" min="0" [(ngModel)]="sets[4][0]" name="playerOneSetFive">
             </mat-form-field>
         </div>
     </div>
@@ -83,28 +83,34 @@
         <div class="col-sm-1"></div>
         <div class="col-sm-1">
             <mat-form-field style="width: 30px;">
-                <input matInput type="number" min="0">
+                <input matInput type="number" min="0" [(ngModel)]="sets[0][1]" name="playerTwoSetOne">
             </mat-form-field>
         </div>
         <div class="col-sm-1">
             <mat-form-field style="width: 30px;">
-                <input matInput type="number" min="0">
+                <input matInput type="number" min="0" [(ngModel)]="sets[1][1]" name="playerTwoSetTwo">
             </mat-form-field>
         </div>
         <div class="col-sm-1">
             <mat-form-field style="width: 30px;">
-                <input matInput type="number" min="0">
+                <input matInput type="number" min="0" [(ngModel)]="sets[2][1]" name="playerTwoSetThree">
             </mat-form-field>
         </div>
         <div class="col-sm-1">
             <mat-form-field style="width: 30px;">
-                <input matInput type="number" min="0">
+                <input matInput type="number" min="0" [(ngModel)]="sets[3][1]" name="playerTwoSetFour">
             </mat-form-field>
         </div>
         <div class="col-sm-1">
             <mat-form-field style="width: 30px;">
-                <input matInput type="number" min="0">
+                <input matInput type="number" min="0" [(ngModel)]="sets[4][1]" name="playerTwoSetFive">
             </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12" style="text-align: center;">
+            <button (click)="postMatch()" mat-raised-button class="btn btn-info">Add match</button>
         </div>
     </div>
 </form>

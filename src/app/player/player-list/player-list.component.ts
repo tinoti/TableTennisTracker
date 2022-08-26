@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from 'src/app/app.store';
+import { AppState, State } from 'src/app/shared/store/app.state';
 import { Player } from '../player.model';
 import { playerActions } from '../store';
 
@@ -14,7 +14,7 @@ export class PlayerListComponent implements OnInit {
 
   constructor(private store: Store<AppState>) { }
 
-  players$: Observable<Player[]> = this.store.select(state => state.player.players)
+  players$: Observable<Player[]> = this.store.select(state => state.game.players)
   playerColumns: string[] = ["name", "setsWon", "matchesWon", "id"]
 
   ngOnInit(): void {

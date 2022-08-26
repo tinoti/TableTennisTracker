@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.store';
+import { AppState, State } from 'src/app/shared/store/app.state';
 import { playerActions } from '../store'
 
 @Component({
