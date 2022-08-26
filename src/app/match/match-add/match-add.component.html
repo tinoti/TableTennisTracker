@@ -1,16 +1,65 @@
 <form #form="ngForm">
     <div class="row">
         <div class="col-sm-4">
+            <p><b>SET</b></p>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1">
+            <p><b>1.</b></p>
+        </div>
+        <div class="col-sm-1">
+            <p><b>2.</b></p>
+        </div>
+        <div class="col-sm-1">
+            <p><b>3.</b></p>
+        </div>
+        <div class="col-sm-1">
+            <p><b>4.</b></p>
+        </div>
+        <div class="col-sm-1">
+            <p><b>5.</b></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
             <mat-form-field>
                 <mat-label>Player one</mat-label>
-                <mat-select [(ngModel)]="playerOne" name="playerOne" >
-                    <mat-option *ngFor="let player of (players$ | async | mutuallyExclusivePlayerSelect:playerTwo)" [value]="player.id" (change)="change($event)">
+                <mat-select [(ngModel)]="playerOne" name="playerOne">
+                    <mat-option *ngFor="let player of players$ | async | mutuallyExclusivePlayerSelect:playerTwo.id"
+                        [value]="player">
                         {{player.name}}
                     </mat-option>
                 </mat-select>
-                <button *ngIf="playerOne" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearPlayerOne($event)">
+                <button *ngIf="playerOne.id" mat-button matSuffix mat-icon-button aria-label="Clear"
+                    (click)="clearPlayerOne($event)">
                     <mat-icon>close</mat-icon>
                 </button>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1">
+            <mat-form-field style="width: 30px;">
+                <input matInput type="number" min="0">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-1">
+            <mat-form-field style="width: 30px;">
+                <input matInput type="number" min="0">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-1">
+            <mat-form-field style="width: 30px;">
+                <input matInput type="number" min="0">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-1">
+            <mat-form-field style="width: 30px;">
+                <input matInput type="number" min="0">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-1">
+            <mat-form-field style="width: 30px;">
+                <input matInput type="number" min="0">
             </mat-form-field>
         </div>
     </div>
@@ -20,13 +69,41 @@
             <mat-form-field>
                 <mat-label>Player two</mat-label>
                 <mat-select [(ngModel)]="playerTwo" name="playerTwo">
-                    <mat-option *ngFor="let player of (players$ | async | mutuallyExclusivePlayerSelect:playerOne)" [value]="player.id">
+                    <mat-option *ngFor="let player of players$ | async | mutuallyExclusivePlayerSelect:playerOne.id"
+                        [value]="player">
                         {{player.name}}
                     </mat-option>
                 </mat-select>
-                <button *ngIf="playerTwo" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearPlayerTwo($event)">
+                <button *ngIf="playerTwo.id" mat-button matSuffix mat-icon-button aria-label="Clear"
+                    (click)="clearPlayerTwo($event)">
                     <mat-icon>close</mat-icon>
                 </button>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1">
+            <mat-form-field style="width: 30px;">
+                <input matInput type="number" min="0">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-1">
+            <mat-form-field style="width: 30px;">
+                <input matInput type="number" min="0">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-1">
+            <mat-form-field style="width: 30px;">
+                <input matInput type="number" min="0">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-1">
+            <mat-form-field style="width: 30px;">
+                <input matInput type="number" min="0">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-1">
+            <mat-form-field style="width: 30px;">
+                <input matInput type="number" min="0">
             </mat-form-field>
         </div>
     </div>

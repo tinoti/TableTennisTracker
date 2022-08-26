@@ -14,24 +14,22 @@ export class MatchAddComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   players$: Observable<Player[]> = this.store.select( state => state.player.players)
-  playerOne: string = ""
-  playerTwo: string = ""
+  playerOne: Player = new Player("", "", 0, 0)
+  playerTwo: Player = new Player("", "", 0, 0)
+
+  sets: Array<any> = [[7,11], [8,11],[14,12]]
 
   ngOnInit(): void {
   }
 
   clearPlayerOne(event: any) {
-    this.playerOne = ""
+    this.playerOne = new Player("", "", 0, 0)
     event.stopPropagation()
   }
 
   clearPlayerTwo(event: any) {
-    this.playerTwo = ""
+    this.playerTwo = new Player("", "", 0, 0)
     event.stopPropagation()
-  }
-
-  change(event: any) {
-    console.log(event)
   }
 
 }
