@@ -1,4 +1,5 @@
-<form #form="ngForm" [appSetScoring]="form">
+<!-- One custom pipe (mutuallyExclusivePlayerSelect) and one custom validator (appCheckSets) is used here, files with description can be found in shared folder -->
+<form #form="ngForm" [appCheckSets]="sets" ngNativeValidate >
     <div class="row">
         <div class="col-sm-4">
             <p><b>SET</b></p>
@@ -24,22 +25,24 @@
         <div class="col-sm-4">
             <mat-form-field>
                 <mat-label>Player one</mat-label>
-                <mat-select [(ngModel)]="playerOne" name="playerOne">
-                    <mat-option *ngFor="let player of players$ | async | mutuallyExclusivePlayerSelect:playerTwo.id"
+                <mat-select [(ngModel)]="playerOne" name="playerOne" required>
+                    <mat-option *ngFor="let player of players$ | async | mutuallyExclusivePlayerSelect:playerTwo?.id"
                         [value]="player">
                         {{player.name}}
                     </mat-option>
                 </mat-select>
-                <button *ngIf="playerOne.id" mat-button matSuffix mat-icon-button aria-label="Clear"
+                <button *ngIf="playerOne?.id" mat-button matSuffix mat-icon-button aria-label="Clear"
                     (click)="clearPlayerOne($event)">
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
         </div>
         <div class="col-sm-1"></div>
-        <div class="col-sm-1" *ngFor="let set of sets">
+
+        <!-- Set input fields for the first player -->
+        <div class="col-sm-1" *ngFor="let set of sets; index as i">
             <mat-form-field class="sets-form-field">
-                <input matInput type="number" min="0" [(ngModel)]="set[0]" name="playerOne">
+                <input matInput type="number" min="0" [(ngModel)]="set[0]" [name]="'playerOne' + i.toString()" >
             </mat-form-field>
         </div>
     </div>
@@ -48,29 +51,31 @@
         <div class="col-sm-4">
             <mat-form-field>
                 <mat-label>Player two</mat-label>
-                <mat-select [(ngModel)]="playerTwo" name="playerTwo">
-                    <mat-option *ngFor="let player of players$ | async | mutuallyExclusivePlayerSelect:playerOne.id"
+                <mat-select [(ngModel)]="playerTwo" name="playerTwo" required>
+                    <mat-option *ngFor="let player of players$ | async | mutuallyExclusivePlayerSelect:playerOne?.id"
                         [value]="player">
                         {{player.name}}
                     </mat-option>
                 </mat-select>
-                <button *ngIf="playerTwo.id" mat-button matSuffix mat-icon-button aria-label="Clear"
+                <button *ngIf="playerTwo?.id" mat-button matSuffix mat-icon-button aria-label="Clear"
                     (click)="clearPlayerTwo($event)">
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
         </div>
         <div class="col-sm-1"></div>
-        <div class="col-sm-1" *ngFor="let set of sets">
+
+        <!-- Set input fields for the second player -->
+        <div class="col-sm-1" *ngFor="let set of sets; index as i">
             <mat-form-field class="sets-form-field">
-                <input matInput type="number" min="0" [(ngModel)]="set[1]" name="playerTwo">
+                <input matInput type="number" min="0" [(ngModel)]="set[1]" [name]="'playerTwo' + i.toString()">
             </mat-form-field>
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-12" style="text-align: center;">
-            <button (click)="postMatch(); resetForm()" mat-raised-button class="btn btn-info add-match-button">Add
+            <button (click)="postMatch(); resetForm(form)" [disabled]="!form.valid" mat-raised-button class="btn btn-info add-match-button">Add
                 match</button>
         </div>
     </div>

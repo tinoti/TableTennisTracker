@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Player } from 'src/app/player/player.model';
 /*
-    Checks if a player has already been selected.
+    Checks if a player has already been selected. Input is id of the other selected player, so that the player that is already selected is not on the list 
+    for the second select.
 */
 @Pipe({ name: 'mutuallyExclusivePlayerSelect' })
 export class MutuallyExclusivePlayerSelectPipe implements PipeTransform {

@@ -18,7 +18,7 @@ import { MatchAddComponent } from './match/match-add/match-add.component';
 import { MatchListComponent } from './match/match-list/match-list.component';
 import { MatchDetailsComponent } from './match/match-details/match-details.component';
 import { MutuallyExclusivePlayerSelectPipe } from './shared/pipes/mutuallyExclusivePlayerSelect.pipe';
-import { SetScoringValidatorDirective } from './shared/directives/setScoringValidator.directive';
+import { CheckSetsValidatorDirective } from './shared/directives/checkSetsValidator';
 import { appReducer } from './shared/store/app.reducers';
 
 @NgModule({
@@ -33,7 +33,7 @@ import { appReducer } from './shared/store/app.reducers';
     MatchListComponent,
     MatchDetailsComponent,
     MutuallyExclusivePlayerSelectPipe,
-    SetScoringValidatorDirective
+    CheckSetsValidatorDirective
   ],
   imports: [
     StoreModule.forRoot({ game: appReducer }),
@@ -46,7 +46,7 @@ import { appReducer } from './shared/store/app.reducers';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [SetScoringValidatorDirective]
+  exports: [CheckSetsValidatorDirective]
 })
 export class AppModule { }
 

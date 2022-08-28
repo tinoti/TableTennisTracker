@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Player } from 'src/app/player/player.model';
@@ -15,8 +16,8 @@ export class MatchAddComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   players$: Observable<Player[]> = this.store.select(state => state.game.players)
-  playerOne: Player = new Player("", "", 0, 0)
-  playerTwo: Player = new Player("", "", 0, 0)
+  playerOne: any = null
+  playerTwo: any = null
 
   sets: Array<Array<number>> = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
 
@@ -34,13 +35,13 @@ export class MatchAddComponent implements OnInit {
   }
 
   postMatch() {
-    this.store.dispatch(appActions.postMatch({ playerOneId: this.playerOne.id, playerTwoId: this.playerTwo.id, sets: this.sets }))
+    this.store.dispatch(appActions.postMatch({ playerOneId: this.playerOne.id, playerTwoId: this.playerTwo.id, sets: [...this.sets] }))
   }
 
-  resetForm(){
+  resetForm(form: NgForm){
     this.sets = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
-    this.playerOne = new Player("", "", 0, 0)
-    this.playerTwo = new Player("", "", 0, 0)
+    this.playerOne = null
+    this.playerTwo = null
   }
 
 }

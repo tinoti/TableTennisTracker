@@ -27,13 +27,15 @@ const postMatch = (state: appState.State, playerOneId: string, playerTwoId: stri
 
     if (playerOneSetCounter > playerTwoSetCounter) {
         playerOne.matchesWon++
-        playerOne.setsWon += playerOneSetCounter
         playerWonId = playerOne.id
     } else {
         playerTwo.matchesWon++
-        playerTwo.setsWon += playerTwoSetCounter
         playerWonId = playerTwo.id
     }
+
+    playerOne.setsWon += playerOneSetCounter
+    playerTwo.setsWon += playerTwoSetCounter
+
 
     // Look https://stackoverflow.com/a/59674035.
     // In short, the state is immutable so to change the property on the object inside the array we first have to mutate the array and then the object inside the array.
