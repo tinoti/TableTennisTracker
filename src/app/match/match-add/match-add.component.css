@@ -2,3 +2,11 @@ mat-icon {
     color: #bbbdbf;
     cursor: pointer;
 }
+
+.add-match-button {
+    margin-bottom: 10px;
+}
+
+.sets-form-field {
+    width: 30px;
+}

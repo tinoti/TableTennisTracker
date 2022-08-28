@@ -34,8 +34,13 @@ export class MatchAddComponent implements OnInit {
   }
 
   postMatch() {
-    console.log(this.sets)
     this.store.dispatch(appActions.postMatch({ playerOneId: this.playerOne.id, playerTwoId: this.playerTwo.id, sets: this.sets }))
+  }
+
+  resetForm(){
+    this.sets = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+    this.playerOne = new Player("", "", 0, 0)
+    this.playerTwo = new Player("", "", 0, 0)
   }
 
 }

@@ -1,6 +1,25 @@
+<!-- Here we are using bootstrap to center the content, add cards and to contain every subcomponent of the player page  -->
 <div class="container">
     <div class="row">
-        <app-player-list></app-player-list>
-        <app-player-add></app-player-add>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="mat-card">
+                <div class="card-body add-player">
+                    <app-player-add></app-player-add>  <!-- Add player subcomponent-->
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="mat-card">
+                <div class="card-body">
+                    <app-player-list></app-player-list> <!-- Player list subcomponent-->
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
     </div>
 </div>

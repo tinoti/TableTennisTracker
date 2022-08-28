@@ -6,3 +6,7 @@ mat-icon {
     color: #bbbdbf;
     cursor: pointer;
 }
+
+table {
+    width: 100%;
+}
