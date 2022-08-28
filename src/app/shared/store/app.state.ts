@@ -8,11 +8,15 @@ export interface AppState {
 export interface State {
     players: Player[],
     matches: Match[],
-    selectedMatchId: string
+    selectedMatchId: string,
+    selectedPlayerId: string,
+    recentlyPlayedMatches: Match[]
 }
 
 export const initialState: State = {
     players: [],
     matches: [],
-    selectedMatchId: ""
+    selectedMatchId: "",
+    selectedPlayerId: "",
+    recentlyPlayedMatches: []
 }

@@ -2,12 +2,12 @@
     <div class="row">
         <div class="col-sm-4"></div>
         <div class="mat-card col-sm-6">
-            <div class="card-body" style="text-align: center;">
+            <div class="card-body">
                 <ng-container *ngIf="selectedMatch$ | async as selectedMatch">
                     <div class="row">
                         <h4>Match details</h4>
                     </div>
-                    <div class="row" style="text-align: center;">
+                    <div class="row">
                         <h5 *ngrxLet="players$ as players">{{playerName(selectedMatch.playerOneId, players)}}
                             &nbsp;&nbsp;&nbsp; VS &nbsp;&nbsp;&nbsp; {{playerName(selectedMatch.playerTwoId, players)}}</h5>
                     </div>

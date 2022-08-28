@@ -87,6 +87,27 @@ const selectMatch = (state: appState.State, id: string) => {
     }
 }
 
+const selectPlayer = (state: appState.State, id: string) => {
+
+    return {
+        ...state,
+        selectedPlayerId: id
+    }
+}
+
+// We are selecting the most recent matches a player has played to be displayed on the player details page
+// This should filter matches based on the date and return a couple of newest matches, but for this example app we are returning every match
+const selectRecentlyPlayedMatches = (state: appState.State, playerId: string) => {
+
+    const recentlyPlayedMatches = state.matches.filter(o => o.playerOneId === playerId || o.playerTwoId === playerId)
+
+    return {
+        ...state,
+        recentlyPlayedMatches: recentlyPlayedMatches
+    }
+}
+
+
 
 
 export const appReducer = createReducer(
@@ -94,5 +115,8 @@ export const appReducer = createReducer(
     on(appActions.postMatch, (state, { playerOneId, playerTwoId, sets }) => { return postMatch(state, playerOneId, playerTwoId, sets) }),
     on(appActions.postPlayer, (state, { name }) => { return postPlayer(state, name) }),
     on(appActions.deletePlayer, (state, { id }) => { return deletePlayer(state, id) }),
-    on(appActions.selectMatch, (state, { id }) => { return selectMatch(state, id) })
+    on(appActions.selectMatch, (state, { id }) => { return selectMatch(state, id) }),
+    on(appActions.selectPlayer, (state, { id }) => { return selectPlayer(state, id) }),
+    on(appActions.selectRecentlyPlayedMatches, (state, { playerId }) => { return selectRecentlyPlayedMatches(state, playerId) })
+
 )

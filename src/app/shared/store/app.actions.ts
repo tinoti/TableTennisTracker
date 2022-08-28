@@ -5,7 +5,9 @@ export enum ActionTypes {
     DELETE_MATCH = "[Match] Delete match",
     SELECT_MATCH = "[Match] Select match",
     POST_PLAYER = "[Player] Post player",
-    DELETE_PLAYER = "[Player] Delete player"
+    DELETE_PLAYER = "[Player] Delete player",
+    SELECT_PLAYER = "[Player] Select player",
+    SELECT_RECENTLY_PLAYED_MATCHES = "[Player] Select recently played matches"
 }
 
 export const postMatch = createAction(
@@ -33,6 +35,16 @@ export const deletePlayer = createAction(
     props<{ id: string }>()
 )
 
+export const selectPlayer = createAction(
+    ActionTypes.SELECT_PLAYER,
+    props<{ id: string }>()
+)
+
+export const selectRecentlyPlayedMatches = createAction(
+    ActionTypes.SELECT_RECENTLY_PLAYED_MATCHES,
+    props<{ playerId: string }>()
+)
+
 
 
 
@@ -41,7 +53,9 @@ const actions = union({
     deleteMatch,
     selectMatch,
     postPlayer,
-    deletePlayer
+    deletePlayer,
+    selectPlayer,
+    selectRecentlyPlayedMatches
 })
 
 export type ActionsUnion = typeof actions

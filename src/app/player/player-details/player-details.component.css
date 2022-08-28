@@ -1,0 +1,17 @@
+.row {
+    padding-top: 10px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}
+
+tr {
+    cursor: pointer;
+
+}
+
+tr:hover {
+    background-color: lightcyan;
+}

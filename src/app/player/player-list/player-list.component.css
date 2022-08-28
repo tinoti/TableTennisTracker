@@ -10,3 +10,12 @@ mat-icon {
 table {
     width: 100%;
 }
+
+tr {
+    cursor: pointer;
+
+}
+
+tr:hover {
+    background-color: lightcyan;
+}

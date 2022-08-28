@@ -24,6 +24,6 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="playerColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: playerColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: playerColumns;" [routerLink]="['/player-details']" [queryParams]="{id: row.id}"></tr>
     </table>
 </ng-container>
