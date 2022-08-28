@@ -1,1 +1,37 @@
-<p>match-details works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="mat-card col-sm-6">
+            <div class="card-body" style="text-align: center;">
+                <ng-container *ngIf="selectedMatch$ | async as selectedMatch">
+                    <div class="row">
+                        <h4>Match details</h4>
+                    </div>
+                    <div class="row" style="text-align: center;">
+                        <h5 *ngrxLet="players$ as players">{{playerName(selectedMatch.playerOneId, players)}}
+                            &nbsp;&nbsp;&nbsp; VS &nbsp;&nbsp;&nbsp; {{playerName(selectedMatch.playerTwoId, players)}}</h5>
+                    </div>
+                    <div class="row" *ngFor="let set of selectedMatch.sets; index as i">
+                        <div class="col-sm-2">
+                            <p><b>SET {{i+1}}</b></p>
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2">
+                            <p [style]="set[0] > set[1] ? 'font-weight:bold' : ''">{{set[0]}}</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <p [style]="set[1] > set[0] ? 'font-weight:bold' : ''">{{set[1]}}</p>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <h5 *ngrxLet="players$ as players"><b>Winner:</b> {{playerName(selectedMatch.playerWonId, players)}}</h5>
+                    </div>
+                </ng-container>
+
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+

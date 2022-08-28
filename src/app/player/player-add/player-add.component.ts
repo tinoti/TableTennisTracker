@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState, State } from 'src/app/shared/store/app.state';
-import { playerActions } from '../store'
+import { appActions } from 'src/app/shared/store';
+import { AppState } from 'src/app/shared/store/app.state';
 
 @Component({
   selector: 'app-player-add',
@@ -19,7 +19,7 @@ export class PlayerAddComponent implements OnInit {
   }
 
   postPlayer() {
-    this.store.dispatch(playerActions.postPlayer({ name: this.name }))
+    this.store.dispatch(appActions.postPlayer({ name: this.name }))
   }
 
 }

@@ -5,6 +5,7 @@ import { createReducer, on } from "@ngrx/store";
 import { appActions, appState } from ".";
 import { v4 as uuidv4 } from 'uuid';
 import { Player } from "src/app/player/player.model";
+import { Match } from "src/app/match/match.model";
 
 
 const postMatch = (state: appState.State, playerOneId: string, playerTwoId: string, sets: Array<Array<number>>) => {
@@ -16,18 +17,22 @@ const postMatch = (state: appState.State, playerOneId: string, playerTwoId: stri
     let playerOneSetCounter: number = 0
     let playerTwoSetCounter: number = 0
 
+    let playerWonId: string = ""
+
     // Loop through each set, add sets won to corresponding player and calculate the winner of the match
     sets.forEach(set => {
-        if(set[0] > set[1]) playerOneSetCounter++
-        else if(set[1] > set[0]) playerTwoSetCounter++
+        if (set[0] > set[1]) playerOneSetCounter++
+        else if (set[1] > set[0]) playerTwoSetCounter++
     })
 
     if (playerOneSetCounter > playerTwoSetCounter) {
         playerOne.matchesWon++
         playerOne.setsWon += playerOneSetCounter
+        playerWonId = playerOne.id
     } else {
         playerTwo.matchesWon++
         playerTwo.setsWon += playerTwoSetCounter
+        playerWonId = playerTwo.id
     }
 
     // Look https://stackoverflow.com/a/59674035.
@@ -42,10 +47,14 @@ const postMatch = (state: appState.State, playerOneId: string, playerTwoId: stri
             } else return player
         })
 
+    // Create new match object
+    const match: Match = new Match(uuidv4(), playerOne.id, playerTwo.id, sets, playerWonId)
+
     // Add to state
     return {
         ...state,
-        players: players
+        players: players,
+        matches: [...state.matches, match]
     }
 
 }
@@ -70,11 +79,20 @@ const deletePlayer = (state: appState.State, id: string) => {
     }
 }
 
+const selectMatch = (state: appState.State, id: string) => {
+
+    return {
+        ...state,
+        selectedMatchId: id
+    }
+}
+
 
 
 export const appReducer = createReducer(
     appState.initialState,
     on(appActions.postMatch, (state, { playerOneId, playerTwoId, sets }) => { return postMatch(state, playerOneId, playerTwoId, sets) }),
     on(appActions.postPlayer, (state, { name }) => { return postPlayer(state, name) }),
-    on(appActions.deletePlayer, (state, { id }) => { return deletePlayer(state, id) })
+    on(appActions.deletePlayer, (state, { id }) => { return deletePlayer(state, id) }),
+    on(appActions.selectMatch, (state, { id }) => { return selectMatch(state, id) })
 )
