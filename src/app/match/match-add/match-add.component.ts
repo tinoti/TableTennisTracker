@@ -11,7 +11,7 @@ import { AppState } from 'src/app/shared/store/app.state';
   templateUrl: './match-add.component.html',
   styleUrls: ['./match-add.component.css']
 })
-export class MatchAddComponent implements OnInit {
+export class MatchAddComponent {
 
   constructor(private store: Store<AppState>) { }
 
@@ -21,8 +21,6 @@ export class MatchAddComponent implements OnInit {
 
   sets: Array<Array<number>> = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
 
-  ngOnInit(): void {
-  }
 
   clearPlayerOne(event: any) {
     this.playerOne = new Player("", "", 0, 0)

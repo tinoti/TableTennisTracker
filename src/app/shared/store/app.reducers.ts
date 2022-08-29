@@ -73,11 +73,43 @@ const postPlayer = (state: appState.State, name: string) => {
 
 }
 
-const deletePlayer = (state: appState.State, id: string) => {
+const deleteMatch = (state: appState.State, id: string) => {
+
+    const match: Match = state.matches.find(o => o.id === id) as Match
+
+
+
+    //We need to get the players that played the match and remove sets and matches won from them
+    const players: Player[] = state.players
+    .map(player => ({ ...player }))
+    .map(player => {
+        if (player.id === match.playerWonId) {
+            player.matchesWon--
+        } 
+
+        if(player.id === match.playerOneId) {
+            match.sets.forEach(set => {
+                if(set[0] > set[1]) player.setsWon--
+            })
+        }
+
+        if(player.id === match.playerTwoId) {
+            match.sets.forEach(set => {
+                if(set[1] > set[0]) player.setsWon--
+            })
+        }
+
+        return player
+        
+        
+    })
+
+
 
     return {
         ...state,
-        players: state.players.filter(o => o.id != id) // Remove the player from the array.
+        players: players,
+        matches: state.matches.filter(o => o.id != id) // Remove the match from the array.
     }
 }
 
@@ -116,7 +148,7 @@ export const appReducer = createReducer(
     appState.initialState,
     on(appActions.postMatch, (state, { playerOneId, playerTwoId, sets }) => { return postMatch(state, playerOneId, playerTwoId, sets) }),
     on(appActions.postPlayer, (state, { name }) => { return postPlayer(state, name) }),
-    on(appActions.deletePlayer, (state, { id }) => { return deletePlayer(state, id) }),
+    on(appActions.deleteMatch, (state, { id }) => { return deleteMatch(state, id) }),
     on(appActions.selectMatch, (state, { id }) => { return selectMatch(state, id) }),
     on(appActions.selectPlayer, (state, { id }) => { return selectPlayer(state, id) }),
     on(appActions.selectRecentlyPlayedMatches, (state, { playerId }) => { return selectRecentlyPlayedMatches(state, playerId) })

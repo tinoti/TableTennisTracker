@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { appActions } from 'src/app/shared/store';
 import { AppState } from 'src/app/shared/store/app.state';
@@ -8,15 +8,12 @@ import { AppState } from 'src/app/shared/store/app.state';
   templateUrl: './player-add.component.html',
   styleUrls: ['./player-add.component.css']
 })
-export class PlayerAddComponent implements OnInit {
+export class PlayerAddComponent {
 
   //Initialize the store in the constructor
   constructor(private store: Store<AppState>) { }
 
   name: string = ""
-
-  ngOnInit(): void {
-  }
 
   postPlayer() {
     this.store.dispatch(appActions.postPlayer({ name: this.name }))

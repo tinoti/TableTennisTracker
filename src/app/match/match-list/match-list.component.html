@@ -1,8 +1,8 @@
 <!-- NgrxLet allows us to get data from observable without having to subscribe in the .ts file and assign the value to a variable, removing unnecessary code.  -->
 <ng-container *ngrxLet="matches$ as matches">
-    <table mat-table matSort [dataSource]="matches">
+    <table mat-table [dataSource]="matches">
         <ng-container matColumnDef="playerOne">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Player one</th>
+            <th mat-header-cell *matHeaderCellDef>Player one</th>
             <td [style]="element.playerOneId === element.playerWonId ? 'font-weight:bold' : ''" mat-cell
                 *matCellDef="let element">
                 <ng-container *ngrxLet="players$ as players">{{playerName(element.playerOneId, players)}}</ng-container>
@@ -10,7 +10,7 @@
         </ng-container>
 
         <ng-container matColumnDef="playerTwo">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Player two</th>
+            <th mat-header-cell *matHeaderCellDef>Player two</th>
             <td [style]="element.playerTwoId === element.playerWonId ? 'font-weight:bold' : ''" mat-cell
                 *matCellDef="let element">
                 <ng-container *ngrxLet="players$ as players">{{playerName(element.playerTwoId, players)}}</ng-container>
@@ -18,18 +18,23 @@
         </ng-container>
 
         <ng-container matColumnDef="vs">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> VS </th>
+            <th mat-header-cell *matHeaderCellDef> VS </th>
             <td mat-cell *matCellDef="let element"> VS. </td>
         </ng-container>
 
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-                <mat-icon (click)="deleteMatch(element.id)">
-                    clear</mat-icon>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" [routerLink]="['/match-details']"
+                    [queryParams]="{id: element.id}">
+                    <mat-icon>open_in_new</mat-icon>
+                </button>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="deleteMatch(element.id)">
+                    <mat-icon>close</mat-icon>
+                </button>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="matchColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: matchColumns;" [routerLink]="['/match-details']" [queryParams]="{id: row.id}"></tr>
+        <tr mat-row *matRowDef="let row; columns: matchColumns;"></tr>
     </table>
 </ng-container>
